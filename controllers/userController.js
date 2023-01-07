@@ -26,7 +26,10 @@ const createUser = asyncHandler(async(req,res)=>{
             res.status(204).json({message: "Please fill all the fields"});
         }else if(user.length>0){
             res.status(409).json({message: "User already exists"});
-        } 
+        }else if(typeof req.body.first_name !== 'string' || typeof req.body.last_name !== 'string' || 
+        typeof req.body.email !== 'string' || typeof req.body.pic !== 'string' || typeof req.body.mobile!=='number'){
+            res.status(400).json({message: "Invalid data type"});
+            } 
         else if(checkEmail(req.body.email)){
             res.status(400).json({message: "Invalid email"});
         }
