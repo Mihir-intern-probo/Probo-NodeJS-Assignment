@@ -7,6 +7,10 @@ const app = express();
 app.use(express.json());
 dotenv.config();
 
+app.use("/",(req,res)=>{
+  res.send("Hello World");
+})
+
 app.use("/api/routes", routes);
 
 
